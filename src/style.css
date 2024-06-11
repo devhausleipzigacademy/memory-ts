@@ -9,10 +9,20 @@
   width: var(--width);
   height: var(--height);
   border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .memory__card {
   width: var(--cardWidth);
   height: var(--cardHeight);
   border: 1px solid black;
+  margin: 3px;
+}
+
+.memory__card img {
+  width: var(--cardWidth);
+  height: var(--cardHeight);
 }
