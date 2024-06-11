@@ -27,8 +27,35 @@ for (let i of memoryCards) {
 
 // --------------- RUN GAME --------------- //
 
-// TODO: Make card visible on click
-function handleClick(id: number) {
-  const card = document.getElementById(id.toString()) as HTMLElement;
-  card.classList.toggle('hidden');
+let showCounter = 0;    // counter for showing cards
+let isShowing = false;  // var for keeping track of showing cards
+
+// Make card visible on click
+async function handleClick(id: number) {
+  if (isShowing) { return }
+  if (showCounter%2 === 0) {
+    // first Card
+    const firstCard = document.getElementById(id.toString()) as HTMLElement;
+    firstCard.classList.toggle('hidden');
+  } else {
+    // second Card
+    const secondCard = document.getElementById(id.toString()) as HTMLElement;
+    secondCard.classList.toggle('hidden');
+    isShowing = true;
+    await delay(2000);
+    checkMatch();
+    isShowing = false;
+  }
+  showCounter++;
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// function to check if two cards have been a match
+function checkMatch() {
+  // check if firstCard and secondCard are a match
+  // if so: replace cards with a CHECK
+  // else: hide cards again
 }
