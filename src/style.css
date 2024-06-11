@@ -1,0 +1,18 @@
+:root {
+  --width: 500px;
+  --height: 500px;
+  --cardWidth: 70px;
+  --cardHeight: 70px;
+}
+
+#app {
+  width: var(--width);
+  height: var(--height);
+  border: 1px solid black;
+}
+
+.memory__card {
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  border: 1px solid black;
+}
