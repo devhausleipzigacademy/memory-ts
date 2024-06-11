@@ -27,6 +27,8 @@ for (let i of memoryCards) {
 
 // --------------- RUN GAME --------------- //
 
+let firstCard: HTMLElement;
+let secondCard: HTMLElement;
 let showCounter = 0;    // counter for showing cards
 let isShowing = false;  // var for keeping track of showing cards
 
@@ -35,11 +37,11 @@ async function handleClick(id: number) {
   if (isShowing) { return }
   if (showCounter%2 === 0) {
     // first Card
-    const firstCard = document.getElementById(id.toString()) as HTMLElement;
+    firstCard = document.getElementById(id.toString()) as HTMLElement;
     firstCard.classList.toggle('hidden');
   } else {
     // second Card
-    const secondCard = document.getElementById(id.toString()) as HTMLElement;
+    secondCard = document.getElementById(id.toString()) as HTMLElement;
     secondCard.classList.toggle('hidden');
     isShowing = true;
     await delay(2000);
@@ -55,7 +57,17 @@ function delay(ms: number) {
 
 // function to check if two cards have been a match
 function checkMatch() {
+  let firstId = Number(firstCard.id);
+  let secondId = Number(secondCard.id);
   // check if firstCard and secondCard are a match
-  // if so: replace cards with a CHECK
-  // else: hide cards again
+  if (Math.abs(firstId - secondId) === 12) {
+    // if so: replace cards with a CHECK
+    firstCard.parentElement!.innerHTML = "<img src='/img/check.svg' />"
+    secondCard.parentElement!.innerHTML = "<img src='/img/check.svg' />"
+  } else {
+    // else: hide cards again
+    firstCard.classList.toggle('hidden');
+    secondCard.classList.toggle('hidden');
+
+  }
 }

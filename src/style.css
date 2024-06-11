@@ -5,6 +5,10 @@
   --cardHeight: 70px;
 }
 
+body {
+  background-color: darkgray;
+}
+
 #app {
   width: var(--width);
   height: var(--height);
@@ -13,6 +17,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  background-color: gray;
 }
 
 .memory__card {
@@ -20,6 +25,7 @@
   height: var(--cardHeight);
   border: 1px solid black;
   margin: 3px;
+  background-color: aliceblue;
 }
 
 .memory__card img {
