@@ -37,6 +37,9 @@ let player = 1;
 let playerOneScore = 0;
 let playerTwoScore = 0;
 
+const playerTurnDiv = document.getElementById('playerTurn') as HTMLElement;
+const playerOneScoreDiv = document.getElementById('playerOneScore') as HTMLElement;
+const playerTwoScoreDiv = document.getElementById('playerTwoScore') as HTMLElement;
 
 // Make card visible on click
 async function handleClick(id: number) {
@@ -90,10 +93,25 @@ function checkMatch() {
     // if so: replace cards with a CHECK
     firstCard.parentElement!.innerHTML = "<img src='/img/check.svg' />"
     secondCard.parentElement!.innerHTML = "<img src='/img/check.svg' />"
+    score();
   } else {
     // else: hide cards again
     firstCard.classList.toggle('hidden');
     secondCard.classList.toggle('hidden');
     player = player === 1 ? 2 : 1;
+    playerTurnDiv.innerText = player.toString();
+  }
+}
+
+function score() {
+  switch (player) {
+    case 1:
+      playerOneScore++;
+      playerOneScoreDiv.innerText = playerOneScore.toString();
+      break;
+    case 2:
+      playerTwoScore++;
+      playerTwoScoreDiv.innerText = playerTwoScore.toString();
+      break;
   }
 }
