@@ -32,16 +32,21 @@ let secondCard: HTMLElement;
 let showCounter = 0;    // counter for showing cards
 let isShowing = false;  // var for keeping track of showing cards
 
+// scoring functionality
+
+
 // Make card visible on click
 async function handleClick(id: number) {
   if (isShowing) { return }
   if (showCounter%2 === 0) {
     // first Card
     firstCard = document.getElementById(id.toString()) as HTMLElement;
+    fancyRotate(firstCard);
     firstCard.classList.toggle('hidden');
   } else {
     // second Card
     secondCard = document.getElementById(id.toString()) as HTMLElement;
+    fancyRotate(secondCard);
     secondCard.classList.toggle('hidden');
     isShowing = true;
     await delay(2000);
@@ -51,9 +56,17 @@ async function handleClick(id: number) {
   showCounter++;
 }
 
+async function fancyRotate(card: HTMLElement) {
+  for (let i=0; i<=360; i+=5) {
+    card.parentElement!.style.rotate = `${i}deg`;
+    await delay(5);
+  }
+}
+
 function delay(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 
 // function to check if two cards have been a match
 function checkMatch() {
