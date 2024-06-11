@@ -33,6 +33,9 @@ let showCounter = 0;    // counter for showing cards
 let isShowing = false;  // var for keeping track of showing cards
 
 // scoring functionality
+let player = 1;
+let playerOneScore = 0;
+let playerTwoScore = 0;
 
 
 // Make card visible on click
@@ -41,13 +44,11 @@ async function handleClick(id: number) {
   if (showCounter%2 === 0) {
     // first Card
     firstCard = document.getElementById(id.toString()) as HTMLElement;
-    fancyRotate(firstCard);
-    firstCard.classList.toggle('hidden');
+    fancyFlip(firstCard);
   } else {
     // second Card
     secondCard = document.getElementById(id.toString()) as HTMLElement;
-    fancyRotate(secondCard);
-    secondCard.classList.toggle('hidden');
+    fancyFlip(secondCard);
     isShowing = true;
     await delay(2000);
     checkMatch();
@@ -59,6 +60,18 @@ async function handleClick(id: number) {
 async function fancyRotate(card: HTMLElement) {
   for (let i=0; i<=360; i+=5) {
     card.parentElement!.style.rotate = `${i}deg`;
+    await delay(5);
+  }
+}
+
+async function fancyFlip(card: HTMLElement) {
+  for (let i=70; i>= 0; i-=5) {
+    card.parentElement!.style.width = `${i}px`;
+    await delay(5);
+  }
+  card.classList.toggle('hidden');
+  for (let i=0; i<= 70; i+=5) {
+    card.parentElement!.style.width = `${i}px`;
     await delay(5);
   }
 }
@@ -81,6 +94,6 @@ function checkMatch() {
     // else: hide cards again
     firstCard.classList.toggle('hidden');
     secondCard.classList.toggle('hidden');
-
+    player = player === 1 ? 2 : 1;
   }
 }
