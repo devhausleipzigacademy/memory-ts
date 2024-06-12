@@ -47,11 +47,11 @@ async function handleClick(id: number) {
   if (showCounter%2 === 0) {
     // first Card
     firstCard = document.getElementById(id.toString()) as HTMLElement;
-    fancyFlip(firstCard);
+    fancyRotate(firstCard);
   } else {
     // second Card
     secondCard = document.getElementById(id.toString()) as HTMLElement;
-    fancyFlip(secondCard);
+    fancyRotate(secondCard);
     isShowing = true;
     await delay(2000);
     checkMatch();
@@ -60,22 +60,19 @@ async function handleClick(id: number) {
   showCounter++;
 }
 
-async function fancyRotate(card: HTMLElement) {
-  for (let i=0; i<=360; i+=5) {
-    card.parentElement!.style.rotate = `${i}deg`;
-    await delay(5);
-  }
-}
-
-async function fancyFlip(card: HTMLElement) {
-  for (let i=70; i>= 0; i-=5) {
-    card.parentElement!.style.width = `${i}px`;
-    await delay(5);
-  }
-  card.classList.toggle('hidden');
-  for (let i=0; i<= 70; i+=5) {
-    card.parentElement!.style.width = `${i}px`;
-    await delay(5);
+function fancyRotate(card: HTMLElement) {
+  let degree = 0;
+  let id = setInterval(frame, 5);
+  function frame() {
+    // end of animation
+    if (degree === 360) { 
+      clearInterval(id);
+      card.classList.toggle('hidden');
+    } else {
+      // change style for animation
+      degree += 5;
+      card.parentElement!.style.rotate = `${degree}deg`;
+    }
   }
 }
 
