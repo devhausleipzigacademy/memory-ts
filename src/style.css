@@ -6,33 +6,59 @@
 }
 
 body {
-  background-color: darkgray;
+  background-color: rgb(172, 188, 235);
 }
+
+h3 {
+  color: rgb(106, 124, 175);
+  font-family:Arial, Helvetica, sans-serif;
+}
+
 
 #app {
   width: var(--width);
   height: var(--height);
-  border: 1px solid black;
+  border: 5px solid rgb(106, 124, 175);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
   align-items: center;
   justify-content: center;
-  background-color: gray;
+  background-color: rgb(172, 188, 235);
+  border-radius: 20px;
+}
+
+#playerScores {
+  display: grid;
+  width: var(--width);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+#playerOne {
+  text-align: left;
+  padding: 5px;
+}
+
+#playerTwo {
+  text-align: right;
+  padding: 5px;
 }
 
 .memory__card {
   width: var(--cardWidth);
   height: var(--cardHeight);
-  border: 1px solid black;
-  margin: 3px;
-  background-color: aliceblue;
+  margin: auto;
+  background-color: rgb(106, 124, 175);
+  border: 3px solid rgb(106, 124, 175);
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .memory__card img {
   width: var(--cardWidth);
   height: var(--cardHeight);
+  background-color: white;
 }
 
 .hidden {

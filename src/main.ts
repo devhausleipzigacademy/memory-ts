@@ -1,5 +1,20 @@
 // --------------- MEMORY GAME --------------- //
 
+// --------------- GET PLAYER NAMES --------------- //
+
+let playerOneName = prompt("Enter name of Player One.", "Harry Potter");
+let playerTwoName = prompt("Enter name of Player Two.", "Ron Weasly");
+
+if (playerOneName !== null) {
+  const playerOneNameDiv = document.getElementById('playerOneName') as HTMLElement;
+  playerOneNameDiv.innerText = playerOneName;
+}
+
+if (playerTwoName !== null) {
+  const playerTwoNameDiv = document.getElementById('playerTwoName') as HTMLElement;
+  playerTwoNameDiv.innerText = playerTwoName;
+}
+
 // --------------- SET UP GAME --------------- //
 
 const appDiv = document.getElementById('app') as HTMLDivElement;
@@ -33,17 +48,20 @@ let showCounter = 0;    // counter for showing cards
 let isShowing = false;  // var for keeping track of showing cards
 
 // scoring functionality
-let player = 1;
+let player = playerOneName;
 let playerOneScore = 0;
 let playerTwoScore = 0;
+
 
 const playerTurnDiv = document.getElementById('playerTurn') as HTMLElement;
 const playerOneScoreDiv = document.getElementById('playerOneScore') as HTMLElement;
 const playerTwoScoreDiv = document.getElementById('playerTwoScore') as HTMLElement;
+playerTurnDiv.innerText = typeof player === 'string' ? player : 'X';
 
 // Make card visible on click
 async function handleClick(id: number) {
   if (isShowing) { return }
+  if (id.toString() === firstCard?.getAttribute('id')) { return }
   if (showCounter%2 === 0) {
     // first Card
     firstCard = document.getElementById(id.toString()) as HTMLElement;
@@ -95,18 +113,18 @@ function checkMatch() {
     // else: hide cards again
     firstCard.classList.toggle('hidden');
     secondCard.classList.toggle('hidden');
-    player = player === 1 ? 2 : 1;
-    playerTurnDiv.innerText = player.toString();
+    player = player === playerOneName ? playerTwoName : playerOneName;
+    playerTurnDiv.innerText = typeof player === 'string' ? player : 'X';
   }
 }
 
 function score() {
   switch (player) {
-    case 1:
+    case playerOneName:
       playerOneScore++;
       playerOneScoreDiv.innerText = playerOneScore.toString();
       break;
-    case 2:
+    case playerTwoName:
       playerTwoScore++;
       playerTwoScoreDiv.innerText = playerTwoScore.toString();
       break;

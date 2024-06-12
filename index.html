@@ -11,9 +11,13 @@
     <center>
       <h3>Memory Game</h3>
       <div id="app"></div>
-      <p>Player 1: <span id="playerOneScore">0</span></p>
-      <p>Player 2: <span id="playerTwoScore">0</span></p>
-      <p>Your Turn: Player <span id="playerTurn">1</span></p>
+      <div id="playerScores">
+        <h3 id="playerOne">
+          <span id="playerOneName"></span>: <span id="playerOneScore">0</span></h3>
+        <h3 id="playerTwo">
+          <span id="playerTwoName"></span>: <span id="playerTwoScore">0</span></h3>
+      </div>
+      <h3>Your Turn: <span id="playerTurn"></span></h3>
     </center>
     <script type="module" src="/src/main.ts"></script>
   </body>
